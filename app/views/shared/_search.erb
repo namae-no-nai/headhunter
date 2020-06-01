@@ -1,0 +1,5 @@
+<%= form_with url: search_job_vacancies_path, method: :get, local: true do |f|%>
+  <%= f.label :q, 'Busca'%>
+  <%= f.search_field :q%>
+  <%= f.submit 'Buscar'%>
+<%end%>

@@ -1,0 +1,19 @@
+<h1>Dados da Vaga de emprego</h1>
+
+<dl>
+<dt>Vaga: </dt>
+<dd><%= @job_vacancy.title%></dd>
+<dt>Descrição da Vaga: </dt>
+<dd><%= @job_vacancy.job_description%></dd>
+<dt>Habilidades desejáveis</dt>
+<dd><%= @job_vacancy.desired_skills%></dd>
+<dt>Faixa salarial: </dt>
+<dd><%= @job_vacancy.income_range%></dd>
+<dt>Nível da vaga: </dt>
+<dd><%= @job_vacancy.job_level%></dd>
+<dt>Data limite:</dt>
+<dd><%= l(@job_vacancy.deadline)%></dd>
+<dt>Localização da vaga:</dt>
+<dd><%= @job_vacancy.area%></dd>
+
+<%= link_to "Voltar", root_path %>

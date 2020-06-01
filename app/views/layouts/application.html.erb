@@ -8,16 +8,25 @@
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-  <header>
-    <%= link_to "Candidato", new_user_session_path%>
+  
+  <nav class="navbar navbar-dark bg-dark", style='background-color: #e3f2fd;'>
+     <span class="navbar-text">
+        <%= link_to 'Ver vagas de emprego', job_vacancies_path%>
     <% if user_signed_in? %>
+      <%= link_to 'Home candidato', root_path %>
       <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
-    <%end%>
+    </span>
+  <%end%>
+  <% if head_signed_in? %>
+    <%= link_to 'Home headhunter', head_profiles_path%>
+    <%= link_to 'Cadastrar vaga de emprego', new_job_vacancy_path %>
+    <%= link_to 'Sair', destroy_head_session_path, method: :delete %>
+  <%end%>
+  <% if !(user_signed_in? || head_signed_in?) %>
+    <%= link_to "Candidato", new_user_session_path%>
     <%= link_to "Headhunter", new_head_session_path%>
-    <% if head_signed_in? %>
-      <%= link_to 'Sair', destroy_head_session_path, method: :delete %>
-    <%end%>
-  </header>
+  <%end%>
+  </nav>
   <body>
     <%= flash[:alert] %>
     <%= flash[:notice] %>

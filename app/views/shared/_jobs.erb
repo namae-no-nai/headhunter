@@ -1,0 +1,16 @@
+<% if @job_vacancies.present?%>
+  <dl>
+    <% @job_vacancies.each do |j|%>
+      <dt>Vaga: </dt>
+      <dd><%= j.title %></dd>
+      <dt>Descrição da Vaga: </dt>
+      <dd><%= j.job_description %></dd>
+      <dt>Faixa salarial: </dt>
+      <dd><%= j.income_range %></dd>
+      <dt><%= link_to "Ver detalhes", j, id: "details-#{j.id}"%></dt>
+      <br>
+<%end%>
+  </dl>
+  <%else%>
+  <p>Nenhuma vaga de emprego disponível</p>
+<%end%>

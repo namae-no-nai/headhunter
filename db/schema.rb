@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_01_172617) do
+ActiveRecord::Schema.define(version: 2020_06_01_175641) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -47,6 +47,13 @@ ActiveRecord::Schema.define(version: 2020_06_01_172617) do
     t.index ["user_id"], name: "index_applicants_on_user_id"
   end
 
+  create_table "head_profiles", force: :cascade do |t|
+    t.integer "head_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["head_id"], name: "index_head_profiles_on_head_id"
+  end
+
   create_table "heads", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -57,6 +64,20 @@ ActiveRecord::Schema.define(version: 2020_06_01_172617) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_heads_on_email", unique: true
     t.index ["reset_password_token"], name: "index_heads_on_reset_password_token", unique: true
+  end
+
+  create_table "job_vacancies", force: :cascade do |t|
+    t.string "title"
+    t.string "job_description"
+    t.string "desired_skills"
+    t.string "income_range"
+    t.string "job_level"
+    t.date "deadline"
+    t.string "area"
+    t.integer "head_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["head_id"], name: "index_job_vacancies_on_head_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -73,4 +94,5 @@ ActiveRecord::Schema.define(version: 2020_06_01_172617) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "applicants", "users"
+  add_foreign_key "job_vacancies", "heads"
 end

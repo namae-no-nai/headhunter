@@ -1,0 +1,25 @@
+<%@job_vacancy.errors.full_messages.each do |message|%>
+  <b><%= message %><b></br>
+<%end%>
+
+<%= form_for @job_vacancy do |f| %>
+  <%= f.label :title, "Vaga"%>
+  <%= f.text_field :title%><br>
+  <%= f.label :job_description, "Descrição da vaga"%>
+  <%= f.text_field :job_description%><br>
+  <%= f.label :desired_skills, "Habilidades desejáveis"%>
+  <%= f.text_field :desired_skills%><br>
+  <%= f.label :income_range, "Faixa salarial"%>
+  <%= f.select :income_range, ['R$1000,00 a R$2000,00', 'R$2000,00 a R$3000,00',
+                               'R$4000,00 a R$5000,00', 'maior que R$5000,00', 
+                               'a combinar']%><br>
+  <%= f.label :job_level, 'Nível da vaga'%><br>
+  <%= f.select :job_level, ['estágio', 'júnior', 'pleno','sênior',
+                            'especialista','diretor']%>
+  <%= f.label :deadline, "Data limite"%>
+  <%= f.date_field :deadline%><br>
+  <%= f.label :area, 'Localização da vaga'%>
+  <%= f.text_field :area%>
+  <%= f.submit "Enviar"%>
+<%end%>
+  
