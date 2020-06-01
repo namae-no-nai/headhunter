@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>HeadhunterReloaded</title>
+    <title>Headhunter</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
+  <header>
+    <%= link_to "Candidato", new_user_session_path%>
+    <% if user_signed_in? %>
+      <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
+    <%end%>
+  </header>
   <body>
+    <%= flash[:alert] %>
+    <%= flash[:notice] %>
     <%= yield %>
   </body>
 </html>

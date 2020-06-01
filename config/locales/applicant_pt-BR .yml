@@ -1,0 +1,14 @@
+---
+pt-BR:
+  activerecord:
+    models: 
+      applicant: Candidato
+    attributes:
+      applicant:
+        full_name: Nome completo
+        social_name: Nome Social
+        birthdate: Data de Nascimento
+        academic: Formação
+        description: Descrição
+        experience: Experiência profissional
+        photo: Foto
