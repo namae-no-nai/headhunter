@@ -4,6 +4,7 @@ feature 'User auth' do
   context 'log in' do
     scenario 'sucessfully' do
       user = create(:user)
+      applicant = create(:applicant, user: user)
 
       visit root_path
       click_on 'Candidato'

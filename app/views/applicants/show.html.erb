@@ -1,0 +1,19 @@
+<h1>Dados do Candidato</h1>
+
+<dl>
+  <dt>Foto</dt>
+  <dd id = 'photo'><%= image_tag @applicant.photo, size:'210x150', alt: 'Foto'%></dd>
+  <dd><%= @applicant.full_name%></dd>
+  <dt>Nome Social: </dt>
+  <dd><%= @applicant.social_name%></dd>
+  <dt>Data de nascimento</dt>
+  <dd><%= I18n.l(@applicant.birthdate)%></dd>
+  <dt>Formação: </dt>
+  <dd><%= @applicant.academic%></dd>
+  <dt>Descrição: </dt>
+  <dd><%= @applicant.description%></dd>
+  <dt>Experiência</dt>
+  <dd><%= @applicant.experience%></dd>
+</dl>
+
+<%= link_to "Editar", edit_applicant_path(@applicant) %>

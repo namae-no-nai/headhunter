@@ -1,0 +1,23 @@
+<%@applicant.errors.full_messages.each do |message|%>
+  <b><%= message %><b></br>
+<%end%>
+
+<%= form_for @applicant do |f| %>
+  <%= f.label :full_name, "Nome completo"%>
+  <%= f.text_field :full_name%><br>
+  <%= f.label :social_name, "Nome social"%>
+  <%= f.text_field :social_name%><br>
+  <%= f.label :birthdate, "Data de nascimento"%>
+  <%= f.date_field :birthdate%><br>
+  <%= f.label :academic, "Formação"%>
+  <%= f.text_field :academic%><br>
+  <%= f.label :description, "Descrição"%>
+  <%= f.text_field :description %><br>
+  <%= f.label :experience, "Experiência Profissional"%>
+  <%= f.text_field :experience%><br>
+  <%= f.label :photo, "Foto"%>
+  <%= f.file_field :photo%><br>
+
+  <%= f.submit "Enviar"%>
+<%end%>
+  
