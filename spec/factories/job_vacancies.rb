@@ -1,12 +1,12 @@
 FactoryBot.define do
   factory :job_vacancy do
-    title { "MyString" }
-    job_description { "MyString" }
-    desired_skills { "MyString" }
-    income_range { "MyString" }
-    job_level { "MyString" }
-    deadline { "2020-06-01" }
-    area { "MyString" }
-    head { nil }
+    title { 'Mago' }
+    job_description { 'Ser implacável' }
+    desired_skills { 'magia' }
+    income_range { 'R$1000,00 a R$2000,00' }
+    job_level { 'pleno' }
+    deadline { 3.days.from_now }
+    area { 'A' }
+    head
   end
 end
