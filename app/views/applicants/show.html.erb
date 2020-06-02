@@ -15,5 +15,25 @@
   <dt>Experiência</dt>
   <dd><%= @applicant.experience%></dd>
 </dl>
+<% if head_signed_in? %>
+	<%= link_to 'Deixar Comentário', new_applicant_post_path(@applicant) %><br>
+<% end %>
 
-<%= link_to "Editar", edit_applicant_path(@applicant) %>
+<% if @posts.any? %>
+	<% @posts.each do |post| %>
+		<p><%= post.head.email %></p>
+		<p><%= post.content %></p>
+		<p><%= l post.created_at, format: :short %></p>
+		<% if head_signed_in? %>
+			<%= link_to 'Editar', edit_applicant_post_path(@applicant, post), 
+				id: "edit-post#{post.id}"%></p>
+			<p><%= link_to 'Deletar', 
+				[@applicant, post], 
+				method: :delete, 
+				id: "delete-post#{post.id}"%></p>
+	  <% end %>
+	<% end %>
+<% end %>
+<% if user_signed_in? %>
+	<%= link_to "Editar", edit_applicant_path(@applicant) %>
+<% end %>

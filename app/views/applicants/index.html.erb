@@ -1,0 +1,17 @@
+<h1>Candidatos cadastrados</h1>
+<% if @applicants.empty? %>
+	<p><%= 'Nenhuma candidatura registrada' %></p>
+<%else%>
+	<% @applicants.each do |applicant| %>
+		<%= image_tag applicant.photo, size: "210x150", alt: 'Foto' %> 
+		<p><strong>Nome: </strong><%= link_to applicant.full_name, applicant,
+															 		id: "names-#{applicant.id}" %>
+				<% if applicant.mvp? %> 
+      	  <%= '⭐'%>
+      	<%end%></p>
+    <p><strong>Formação: </strong><%= applicant.academic %> </p>
+		<p><strong>Data de Nascimento: </strong>
+					 <%= I18n.l(applicant.birthdate)%></p>
+	<%end%>
+<%end%>
+

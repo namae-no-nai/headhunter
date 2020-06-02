@@ -1,9 +1,21 @@
 class ApplicantsController < ApplicationController
+  before_action :authenticate_user!, only: [:new]
+
+  def index
+    @applicants = Applicant.all
+  end
+  
   def show
-    if @applicant = Applicant.find_by(user: current_user)
-    @applicant = Applicant.find_by(user: current_user)
-    else
-      redirect_to new_applicant_path
+    if user_signed_in?
+      if @applicant = Applicant.find_by(user: current_user)
+        @posts = Post.where(applicant: @applicant)
+      else
+        redirect_to new_applicant_path
+      end
+    end
+    if head_signed_in?
+      @applicant = Applicant.find(params[:id])
+      @posts = Post.where(head: current_head, applicant: @applicant)
     end
   end
   

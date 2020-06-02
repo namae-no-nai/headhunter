@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   end
   root 'home#index'
   resources :head_profiles, only: [:index]
-  resources :applicants, only: %i[index show new create edit update] 
+  resources :applicants, only: %i[index show new create edit update] do
+    resources :posts, only: %i[show new create edit update delete]
+  end
   resources :job_vacancies, only: %i[index show new create] do
     get 'search', on: :collection
   end

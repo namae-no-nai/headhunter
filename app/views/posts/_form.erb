@@ -1,0 +1,9 @@
+<% @post.errors.full_messages.each do |message|%>
+<p><%= message%></p>
+<%end%>
+
+<%= form_with model: [@applicant, @post], local: true do |p|%>
+  <%= p.label :content, "Comentário"%>
+  <%= p.text_area :content %>
+  <%= p.submit "Enviar"%>
+<%end%>

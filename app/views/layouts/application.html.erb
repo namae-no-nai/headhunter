@@ -19,6 +19,7 @@
   <%end%>
   <% if head_signed_in? %>
     <%= link_to 'Home headhunter', head_profiles_path%>
+    <%= link_to 'Ver perfis cadastrados', applicants_path%>
     <%= link_to 'Cadastrar vaga de emprego', new_job_vacancy_path %>
     <%= link_to 'Sair', destroy_head_session_path, method: :delete %>
   <%end%>
