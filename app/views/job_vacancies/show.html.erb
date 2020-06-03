@@ -15,6 +15,9 @@
 <dd><%= l(@job_vacancy.deadline)%></dd>
 <dt>Localização da vaga:</dt>
 <dd><%= @job_vacancy.area%></dd>
+<% if head_signed_in? %>
+	<%= render "entree" %>
+<%end%>
 <% if user_signed_in? %> 
   <% if @job_openings.any? %>
   <p><%= link_to 'Ver minha candidatura', job_vacancy_job_opening_path(@job_vacancy,

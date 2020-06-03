@@ -1,0 +1,15 @@
+<h3>Candidatos:</h3>
+
+<% if @job_openings.present? %>
+		<% @job_openings.each do |j| %>
+			<p><strong>Nome: </strong> <%= link_to j.applicant.full_name,
+																							 applicant_path(j.applicant) %>
+			<p><strong>Formação: </strong> <%= j.applicant.academic %></p>
+			<dt><strong>Carta:</strong></dt>
+			<dd><%= j.letter %></dd>
+			<p><strong>Status do Processo: </strong> 
+			<%= JobOpening.human_attribute_name("status.#{j.status}") %></p>
+		<%end%>
+	<%else%>
+	<p>Nenhuma candidatura foi realizada</p>
+<% end %>
