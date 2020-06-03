@@ -1,0 +1,13 @@
+<h1>Minhas Vagas</h1>
+<% if @job_openings.empty? %>
+	<p><%= 'Nenhuma candidatura registrada' %></p>
+<% end %>
+	<% @job_openings.each do |job| %>
+    <p><strong>Vaga: </strong><%= job.job_vacancy.title %></p>
+		<p><strong>Faixa Salarial: </strong><%= job.job_vacancy.income_range %> 
+    <p><strong>Nível da vaga: </strong><%= job.job_vacancy.job_level %> </p>
+		<p><strong>Localização: </strong><%= job.job_vacancy.area %> </p>
+		<p><%= JobOpening.human_attribute_name("status.#{job.status}") %><p>
+		<p><%= link_to 'Detalhes da Vaga', job.job_vacancy ,
+                                       id: "details-#{job.id}"%></p>
+<% end %>

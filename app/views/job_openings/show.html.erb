@@ -1,0 +1,9 @@
+
+<h1>Informações da Candidatura:</h1>
+
+<p><strong>Vaga:</strong> <%= @job_vacancy.title %></p>
+<p><strong>Carta:</strong> <%= @job_opening.letter %></p>
+<p><strong>Hora da postagem:</strong> <%= l @job_opening.created_at, format: :short %></p>
+<p><strong>Status:</strong> <%= JobOpening.human_attribute_name("status.#{@job_opening.status}")%></p>
+<br>
+<p><%= link_to 'Voltar', job_vacancy_path(@job_vacancy) %></h3>

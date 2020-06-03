@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   resources :applicants, only: %i[index show new create edit update] do
     resources :posts, only: %i[show new create edit update delete]
   end
+  resources :job_openings, only: [:index]
   resources :job_vacancies, only: %i[index show new create] do
     get 'search', on: :collection
+    resources :job_openings, only: %i[show new create]
   end
 end

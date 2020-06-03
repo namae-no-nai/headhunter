@@ -15,5 +15,12 @@
 <dd><%= l(@job_vacancy.deadline)%></dd>
 <dt>Localização da vaga:</dt>
 <dd><%= @job_vacancy.area%></dd>
-
+<% if user_signed_in? %> 
+  <% if @job_openings.any? %>
+  <p><%= link_to 'Ver minha candidatura', job_vacancy_job_opening_path(@job_vacancy,
+                       @job_vacancy) %></p>
+  <%else%>
+  <p><%= link_to 'Me candidatar', new_job_vacancy_job_opening_path(@job_vacancy) %></p>
+  <%end%>
+<%end%>
 <%= link_to "Voltar", root_path %>

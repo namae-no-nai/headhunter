@@ -1,0 +1,15 @@
+<h1>Carta de apresentação</h1>
+<% @job_opening.errors.full_messages.each do |message| %>
+	<p><%= message %></p>
+<% end %>
+<%= form_with model: [@job_vacancy, @job_opening],
+              local: true do |j|%>
+  <%= j.label :letter, "Motivação"%>
+  <%= j.text_field :letter%>
+  <%= j.submit "Enviar"%>
+<%end%>
+<br>
+
+<%= link_to "Voltar", job_vacancies_path%>
+
+ 

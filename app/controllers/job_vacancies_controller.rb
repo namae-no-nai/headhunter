@@ -1,5 +1,5 @@
 class JobVacanciesController < ApplicationController 
-  before_action :authenticate_head!, except: %i[index search]
+  before_action :authenticate_head!, except: %i[index show search]
 
   def index
     @job_vacancies = JobVacancy.all
@@ -7,6 +7,11 @@ class JobVacanciesController < ApplicationController
   
   def show
     @job_vacancy = JobVacancy.find(params[:id])
+    @job_openings = JobOpening.where(job_vacancy: @job_vacancy)
+    if user_signed_in?
+      @applicant = Applicant.find_by(user: current_user)
+      @job_openings = JobOpening.where(applicant: @applicant, job_vacancy: @job_vacancy)
+    end
   end
 
   def new

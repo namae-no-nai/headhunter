@@ -1,0 +1,12 @@
+---
+pt-BR:
+  activerecord:
+    models: 
+      job_opening: Candidatura
+    attributes:
+      job_opening/status:
+        refused: Recusado
+        on_hold: Em Espera
+        accepted: Aceito
+    job_opening:
+      letter: Carta
