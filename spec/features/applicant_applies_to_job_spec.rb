@@ -37,7 +37,7 @@ feature 'Applicant applies for a job' do
       fill_in 'Motivação', with: ''
       click_on 'Enviar'
 
-      expect(page).to have_content('Carta não pode ficar em branco')
+      expect(page).to have_content('Motivação não pode ficar em branco')
     end
   end
 end
