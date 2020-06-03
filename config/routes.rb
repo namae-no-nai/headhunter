@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   root 'home#index'
   resources :head_profiles, only: [:index]
   resources :applicants, only: %i[index show new create edit update] do
-    resources :posts, only: %i[show new create edit update delete]
+    resources :posts, only: %i[show new create edit update destroy]
   end
   resources :job_openings, only: [:index]
   resources :job_vacancies, only: %i[index show new create] do

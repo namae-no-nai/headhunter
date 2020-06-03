@@ -15,6 +15,7 @@ feature 'Head posts a comment' do
     click_on 'Enviar'
 
     expect(page).to have_content('qualquer coisa que eu quiser')
+    expect(page).to have_link('Deletar')
   end
   scenario 'cannot be blank' do
     head = create(:head)

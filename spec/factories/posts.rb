@@ -2,6 +2,6 @@ FactoryBot.define do
   factory :post do
     applicant 
     head 
-    content { "MyString" }
+    content { 'Um post' }
   end
 end
