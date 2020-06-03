@@ -2,7 +2,7 @@
 pt-BR:
   activerecord:
     models:
-      post: Comentário
+      post: Post
     attributes:
       post:
-        content: Mensagem
+        content: Comentário
