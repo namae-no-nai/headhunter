@@ -8,5 +8,5 @@ pt-BR:
         refused: Recusado
         on_hold: Em Espera
         accepted: Aceito
-    job_opening:
-      letter: Carta
+      job_opening:
+        letter: Carta
