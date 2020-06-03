@@ -93,6 +93,9 @@ Ruby on Rails
 
 Pré-requisitos 
 
+Os: É recomendado um sistema baseado em unix como MacOS ou distribuições linux mais conhecidas, como Ubuntu ou Debian
+Windows: é necessário usar Wsl caso vc queira utilizar nativamente ou usar uma aplicação como Docker
+
 Algumas instalações serão necessárias antes de iniciar o projeto. 
 
 [Ruby](https://www.ruby-lang.org/pt/documentation/installation/) versão >=2.7.0
@@ -124,7 +127,7 @@ cd plataforma-headhunters-treina-dev
 ``` 
 ou 
 ``` 
-cd pasta_destino
+cd 'pasta_destino'
 ``` 
 
 Instale as dependencias e prepare o database
@@ -132,13 +135,25 @@ Instale as dependencias e prepare o database
 bin/setup
 ```
 
-## Rodando a aplicação :arrow_forward:
-
+## Rodando a aplicação
+Para rodar os testes de feature
+```
+rspec spec/features
+```
+Para rodar os testes unitários
+```
+rspec /spec/models
+```
+Para acessar a aplicação
 ```
 $ rails server or rails s
 ```
 
-> Depois, acesse http://localhost:3000 para ver a aplicação
+> Depois, acesse 
+```
+ http://localhost:3000 
+``` 
+para ver a aplicação
 
 ## Resolvendo Problemas
 
