@@ -1,5 +1,6 @@
 class JobOpeningsController < ApplicationController
-    
+  before_action :find_applicant
+
   def index
     @job_openings = JobOpening.where(applicant: @applicant)
   end
@@ -35,5 +36,8 @@ class JobOpeningsController < ApplicationController
   def job_opening_params
     params.require(:job_opening).permit(:letter, :status,
                                         :job_vacancy_id, :applicant_id)
+  end
+  def find_applicant
+    @applicant = Applicant.find_by(user: current_user)
   end
 end 

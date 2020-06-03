@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :job_opening do
     letter { "MyString" }
-    status {2}
+    status {1}
     applicant
     job_vacancy
   end
