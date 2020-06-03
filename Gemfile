@@ -22,8 +22,8 @@ group :development, :test do
   gem 'capybara', '~> 3.32.2'
   gem 'factory_bot_rails', '~> 5.2.0'
   gem 'rspec-rails', '~> 4.0.1'
-  gem 'rubocop', require: false, '~> 0.84.0'
-  gem 'simplecov', require: false, group: :test '~> 0.18.5'
+  gem 'rubocop', '~> 0.84.0', require: false
+  gem 'simplecov','~> 0.18.5', require: false, group: :test
 end
 
 group :development do
