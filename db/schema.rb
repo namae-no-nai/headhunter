@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_04_003849) do
+ActiveRecord::Schema.define(version: 2020_06_04_123719) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2020_06_04_003849) do
   end
 
   create_table "feedbacks", force: :cascade do |t|
-    t.string "answer"
+    t.string "message"
     t.integer "job_opening_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -80,6 +80,18 @@ ActiveRecord::Schema.define(version: 2020_06_04_003849) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_heads_on_email", unique: true
     t.index ["reset_password_token"], name: "index_heads_on_reset_password_token", unique: true
+  end
+
+  create_table "job_offers", force: :cascade do |t|
+    t.date "initial_date"
+    t.integer "salary"
+    t.string "benefits"
+    t.string "expectatives"
+    t.string "description"
+    t.integer "job_opening_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["job_opening_id"], name: "index_job_offers_on_job_opening_id"
   end
 
   create_table "job_openings", force: :cascade do |t|
@@ -134,6 +146,7 @@ ActiveRecord::Schema.define(version: 2020_06_04_003849) do
   add_foreign_key "favorites", "applicants"
   add_foreign_key "favorites", "heads"
   add_foreign_key "feedbacks", "job_openings"
+  add_foreign_key "job_offers", "job_openings"
   add_foreign_key "job_openings", "applicants"
   add_foreign_key "job_openings", "job_vacancies"
   add_foreign_key "job_vacancies", "heads"

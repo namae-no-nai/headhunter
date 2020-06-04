@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :job_vacancies, only: %i[index show new create] do
     get 'search', on: :collection
     resources :feedbacks, only: %i[new create]
+    resources :job_offers, only: %i[new create]
     resources :job_openings, only: %i[show new create] 
   end
 end

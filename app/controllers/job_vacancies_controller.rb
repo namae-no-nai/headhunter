@@ -1,5 +1,5 @@
 class JobVacanciesController < ApplicationController 
-  before_action :authenticate_head!, except: %i[index show search]
+  before_action :authenticate_head!, only: %i[new create]
 
   def index
     @job_vacancies = JobVacancy.all

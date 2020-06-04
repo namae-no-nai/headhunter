@@ -1,0 +1,17 @@
+<% @job_offer.errors.full_messages.each do |message| %>
+	<p><%= message %></p>
+<% end %>
+
+<%= form_with model: [@job_vacancy, @job_offer], local: true do |f| %>
+		<%= f.label :initial_date, 'Data de início' %>
+		<%= f.date_field :initial_date %><br>
+		<%= f.label :salary, 'Salário' %>
+		<%= f.text_field :salary %><br>
+		<%= f.label :benefits, 'Benefícios' %>
+		<%= f.text_field :benefits %><br>
+		<%= f.label :description, 'Informações adicionais' %>
+		<%= f.text_field :description %><br>
+		<%= f.label :expectatives, 'Expectativas' %>
+		<%= f.text_field :expectatives %><br>
+	  <%= f.submit 'Enviar' %>
+<% end %>
