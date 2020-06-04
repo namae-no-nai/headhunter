@@ -2,8 +2,24 @@
 
 <dl>
   <dt>Foto</dt>
-  <dd id = 'photo'><%= image_tag @applicant.photo, size:'210x150', alt: 'Foto'%></dd>
-  <dd><%= @applicant.full_name%></dd>
+	<% if @applicant.photo.present?%>
+  	<dd id = 'photo'><%= image_tag @applicant.photo, size:'210x150',
+																										 alt: 'Foto'%></dd>
+	<%end%>
+	<dt>Nome: </dt>
+  <dd><%= @applicant.full_name%>
+	<% if head_signed_in? %>
+  	<% if @favorite.any? %>
+			<%='⭐'%></dd>
+    	<p><%= link_to 'Desfavoritar candidato',
+									 applicant_favorite_path(@applicant),
+									 method: :delete %></p>
+  	<% else %>
+    	<p><%= link_to 'Favoritar candidato', 
+								 applicant_favorites_path(@applicant),
+								 method: :post %><p>
+  	<% end %>
+	<% end %>
   <dt>Nome Social: </dt>
   <dd><%= @applicant.social_name%></dd>
   <dt>Data de nascimento</dt>

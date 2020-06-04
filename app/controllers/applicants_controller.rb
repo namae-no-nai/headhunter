@@ -16,6 +16,7 @@ class ApplicantsController < ApplicationController
     if head_signed_in?
       @applicant = Applicant.find(params[:id])
       @posts = Post.where(head: current_head, applicant: @applicant)
+      @favorite = Favorite.where(head_id: current_head, applicant_id: @applicant)
     end
   end
   

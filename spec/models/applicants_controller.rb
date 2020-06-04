@@ -1,32 +1,4 @@
 class ApplicantsController < ApplicationController
-  before_action :authenticate_visitor
-  before_action :authenticate_head, only: %i[new create edit udpate]
-  before_action :authenticate_applicant_profile, except: %i[new create]
-
-  def star
-    @applicant = Applicant.find(params[:applicant_id])
-  
-		if @applicant.mvp?
-			@applicant.not_mvp!
-		else
-			@applicant.mvp!
-			flash[:notice] = 'Perfil destacado'
-		end
-		redirect_to @applicant
-  end
-
-  def starred
-    @job_vacancy = JobVacancy.find(params[:job_vacancy_id])
-    @job_opening = JobOpening.find(params[:job_opening_id])
-  
-		if @job_opening.applicant.mvp?
-			@job_opening.applicant.not_mvp!
-		else
-			@job_opening.applicant.mvp!
-			flash[:notice] = 'Perfil destacado'
-		end
-		redirect_to @job_vacancy 
-  end
 
   def index
     @applicants = Applicant.all
@@ -43,6 +15,7 @@ class ApplicantsController < ApplicationController
     if head_signed_in?
       @applicant = Applicant.find(params[:id])
       @posts = Post.where(head: current_head, applicant: @applicant)
+      @favorite = star
     end
   end
 
@@ -104,6 +77,11 @@ class ApplicantsController < ApplicationController
       if not find_applicant
 				redirect_to new_applicant_path
 			end
-		end 
+    end
+
+  def star
+    if head_signed_in?
+      @favorite = Favorite.search(params[:applicant_id],current_head)
+    end 
 	end
 end

@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   end
   root 'home#index'
   resources :applicants, only: %i[index show new create edit update] do
+    resources :favorites, only: %i[create destroy]
     resources :posts, only: %i[show new create edit update destroy]
   end
   resources :head_profiles, only: [:index]
