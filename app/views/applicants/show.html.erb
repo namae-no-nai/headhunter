@@ -5,6 +5,8 @@
 	<% if @applicant.photo.present?%>
   	<dd id = 'photo'><%= image_tag @applicant.photo, size:'210x150',
 																										 alt: 'Foto'%></dd>
+	<%else%>
+		<p>Candidato sem foto<p>
 	<%end%>
 	<dt>Nome: </dt>
   <dd><%= @applicant.full_name%>

@@ -3,7 +3,11 @@
 	<p><%= 'Nenhuma candidatura registrada' %></p>
 <%else%>
 	<% @applicants.each do |applicant| %>
+	<% if applicant.photo.present? %>
 		<%= image_tag applicant.photo, size: "210x150", alt: 'Foto' %> 
+		<%else%>
+		<p> Candidato sem foto<p>
+	<%end%>
 		<p><strong>Nome: </strong><%= link_to applicant.full_name, applicant,
 															 		id: "names-#{applicant.id}" %>
 				<% if applicant.mvp? %> 
@@ -12,6 +16,7 @@
     <p><strong>Formação: </strong><%= applicant.academic %> </p>
 		<p><strong>Data de Nascimento: </strong>
 					 <%= I18n.l(applicant.birthdate)%></p>
+		<br>
 	<%end%>
 <%end%>
 
