@@ -15,6 +15,7 @@
     <% if user_signed_in? %>
       <%= link_to 'Home candidato', root_path %>
       <%= link_to 'Meus Feedbacks', feedbacks_path %>
+      <%= link_to 'Minhas Propostas', job_offers_path %>
       <%= link_to 'Minhas Vagas', job_openings_path %>
       <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
     </span>

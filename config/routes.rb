@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   end
   resources :feedbacks, only: [:index]
   resources :head_profiles, only: [:index]
+  resources :job_offers, only: [:index]
   resources :job_openings, only: [:index]
   resources :job_vacancies, only: %i[index show new create] do
     get 'search', on: :collection

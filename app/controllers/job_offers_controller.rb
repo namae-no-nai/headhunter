@@ -1,5 +1,11 @@
 class JobOffersController < ApplicationController
-  before_action :find_current_job
+  before_action :find_current_job, only: %i[new create]
+
+  def index
+    @applicant = Applicant.find_by(user: current_user)
+    @job_opening = JobOpening.find_by(applicant: @applicant)
+    @job_offer = JobOffer.where(job_opening:@job_opening)
+  end
 
   def new
     @job_offer = JobOffer.find_by(job_opening: @job_opening)

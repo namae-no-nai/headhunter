@@ -1,0 +1,24 @@
+<h1>Feedbacks</h1>
+
+<% if @job_offer.empty?%>
+  <p><%= 'Nenhuma proposta'%><p>
+<%else%>
+  <% @job_offer.each do |offer|%><dt>
+  <dl>        
+    <dt> Nome da Vaga </dt>
+    <dd><%= offer.job_opening.job_vacancy.title %></dd>
+    <dt> Descrição </dt>
+    <dd><%= offer.job_opening.job_vacancy.job_description %></dd>
+    <dt> Data de início </dt>
+    <dd><%= I18n.l(offer.initial_date)%><dd>
+    <dt> Salário </dt>
+    <dd><%= number_to_currency(offer.salary)%><dd>
+    <dt> Data de início </dt>
+    <dd><%= offer.expectatives%><dd>
+    <dt> Benefícios </dt>
+    <dd><%= offer.benefits%><dd>
+    <dt> Informações Adicionais </dt>
+    <dd><%= offer.description%><dd>
+  </dl>
+  <%end%>
+<%end%>
