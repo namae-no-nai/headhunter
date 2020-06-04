@@ -15,7 +15,6 @@ class FeedbacksController < ApplicationController
     @feedback = Feedback.new(feedback_params)
     @feedback.job_opening = @job_opening
     if @feedback.save
-      @job_opening.accepted! if @feedback.answer === 'Aceitar'
       @job_opening.refused! if @feedback.answer === 'Recusar'
       flash[:notice] = 'Feedback enviado'
       redirect_to job_vacancy_path(@job_vacancy)
@@ -27,8 +26,7 @@ class FeedbacksController < ApplicationController
   private
 
   def feedback_params
-    params.require(:feedback).permit(:message, :job_opening_id,
-                                     :answer)
+    params.require(:feedback).permit(:message, :job_opening_id)
   end
 
   def find_current_job

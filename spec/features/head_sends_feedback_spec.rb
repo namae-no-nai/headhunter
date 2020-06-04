@@ -12,9 +12,8 @@ feature 'head sends feedback' do
 
     visit root_path
     click_on 'Ver detalhes'
-    click_on 'Enviar Feedback'
+    click_on 'Recusar e enviar Feedback'
     fill_in 'Mensagem', with: 'hoje sim'
-    select 'Aceito', from: 'Resposta'
     click_on 'Enviar'
 
     expect(current_path).to eq(job_vacancy_path(job_vacancy))
@@ -31,9 +30,8 @@ feature 'head sends feedback' do
 
     visit root_path
     click_on 'Ver detalhes'
-    click_on 'Enviar Feedback'
+    click_on 'Recusar e enviar Feedback'
     fill_in 'Mensagem', with: ''
-    select 'Aceito', from: 'Resposta'
     click_on 'Enviar'
 
     expect(current_path).to eq(job_vacancy_feedbacks_path(job_vacancy))
@@ -51,7 +49,7 @@ feature 'head sends feedback' do
 
     visit root_path
     click_on 'Ver detalhes'
-    click_on 'Enviar Feedback'      
+    click_on 'Recusar e enviar Feedback'      
 
     expect(current_path).to eq(job_vacancy_path(job_vacancy))
     expect(page).to have_content('Feedback já enviado')
