@@ -1,0 +1,16 @@
+<h1>Feedbacks</h1>
+
+<% if @feedbacks.empty?%>
+  <p><%= 'Nenhum feedback'%><p>
+<%else%>
+  <% @feedbacks.each do |feed|%><dt>
+  <dl>        
+    <dt> Nome da Vaga </dt>
+    <dd><%= feed.job_opening.job_vacancy.title %></dd>
+    <dt> Descrição </dt>
+    <dd><%= feed.job_opening.job_vacancy.job_description %></dd>
+    <dt> Feedback </dt>
+    <dd><%= feed.message%><dd>
+  </dl>
+  <%end%>
+<%end%>

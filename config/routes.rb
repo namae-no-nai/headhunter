@@ -12,11 +12,12 @@ Rails.application.routes.draw do
     resources :favorites, only: %i[create destroy]
     resources :posts, only: %i[show new create edit update destroy]
   end
+  resources :feedbacks, only: [:index]
   resources :head_profiles, only: [:index]
   resources :job_openings, only: [:index]
   resources :job_vacancies, only: %i[index show new create] do
     get 'search', on: :collection
-    resources :feedbacks, only: %i[new create]
+    resources :feedbacks, only: %i[show new create]
     resources :job_offers, only: %i[new create]
     resources :job_openings, only: %i[show new create] 
   end

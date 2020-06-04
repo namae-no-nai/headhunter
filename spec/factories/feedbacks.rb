@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :feedback do
-    message { 'gostei do seu perfil' }
+    message { 'infelizmente não foi dessa vez' }
     job_opening 
   end
 end
