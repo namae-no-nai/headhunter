@@ -12,10 +12,10 @@ class FeedbacksController < ApplicationController
   end
 
   def create
-    @feedback = Feedback.new(feedback_params)
+    @feedback = Feedback.create(feedback_params)
     @feedback.job_opening = @job_opening
     if @feedback.save
-      @job_opening.refused! if @feedback.answer === 'Recusar'
+      @job_opening.refused!
       flash[:notice] = 'Feedback enviado'
       redirect_to job_vacancy_path(@job_vacancy)
     else
