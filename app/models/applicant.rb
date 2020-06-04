@@ -7,10 +7,6 @@ class Applicant < ApplicationRecord
   validates :description, length: { maximum: 1000 }
   validate :older_than_sixteen
 
-  enum feedback: { mvp: 0,
-                   not_mvp: 1,
-                  }
-
   def older_than_sixteen
     if birthdate.present? && birthdate > 16.years.ago
       errors.add(:birthdate, 'não pode ser menos que 16 anos')

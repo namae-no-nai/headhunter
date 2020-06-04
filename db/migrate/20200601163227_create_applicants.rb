@@ -8,7 +8,6 @@ class CreateApplicants < ActiveRecord::Migration[6.0]
       t.string :description
       t.string :experience
       t.references :user, null: false, foreign_key: true
-      t.integer :feedback, default: 2
 
       t.timestamps
     end
