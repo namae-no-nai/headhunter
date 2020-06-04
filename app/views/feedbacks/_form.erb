@@ -1,0 +1,11 @@
+<% @feedback.errors.full_messages.each do |message| %>
+	<p><%= message %></p>
+<% end %>
+
+<%= form_with model: [@job_vacancy, @feedback], local: true do |f| %>
+		<%= f.label :message, "Mensagem" %>
+		<%= f.text_field :message %>
+    <%= f.label :answer, "Resposta" %>
+    <%= f.select :answer, ['Aceito', 'Recuso'] %> 
+	  <%= f.submit 'Enviar' %>
+<% end %>

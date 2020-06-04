@@ -50,4 +50,10 @@ feature 'Applicant edits profile' do
     click_on 'Enviar'
     expect(page).to have_content('Data de Nascimento não pode ser menos que 16 anos')
   end
+  scenario 'logs out' do
+    visit root_path
+    click_on 'Sair'
+  
+    expect(current_path).to eq('/')
+  end
 end

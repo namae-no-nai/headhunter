@@ -8,13 +8,14 @@ Rails.application.routes.draw do
     root 'head_profiles#index', as: :head_authenticated_root
   end
   root 'home#index'
-  resources :head_profiles, only: [:index]
   resources :applicants, only: %i[index show new create edit update] do
     resources :posts, only: %i[show new create edit update destroy]
   end
+  resources :head_profiles, only: [:index]
   resources :job_openings, only: [:index]
   resources :job_vacancies, only: %i[index show new create] do
     get 'search', on: :collection
-    resources :job_openings, only: %i[show new create]
+    resources :feedbacks, only: %i[new create]
+    resources :job_openings, only: %i[show new create] 
   end
 end

@@ -9,6 +9,8 @@
 			<dd><%= j.letter %></dd>
 			<p><strong>Status do Processo: </strong> 
 			<%= JobOpening.human_attribute_name("status.#{j.status}") %></p>
+			<p><%= link_to "Enviar Feedback", 
+									new_job_vacancy_feedback_path(@job_vacancy) %></p>	
 		<%end%>
 	<%else%>
 	<p>Nenhuma candidatura foi realizada</p>
