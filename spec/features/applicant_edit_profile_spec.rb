@@ -3,9 +3,8 @@ require 'rails_helper'
 feature 'Applicant edits profile' do
   before :each do
     user = create(:user)
-    login_as user, scope: :user
-
     applicant = create(:applicant, user: user)
+    login_as user, scope: :user
 
     visit root_path
     click_on 'Editar'
@@ -50,6 +49,7 @@ feature 'Applicant edits profile' do
     click_on 'Enviar'
     expect(page).to have_content('Data de Nascimento não pode ser menos que 16 anos')
   end
+
   scenario 'logs out' do
     visit root_path
     click_on 'Sair'

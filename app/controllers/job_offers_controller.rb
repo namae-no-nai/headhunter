@@ -2,6 +2,7 @@ class JobOffersController < ApplicationController
   before_action :find_current_job, only: %i[new create]
   before_action :authenticate_head!, only: %i[new create]
   before_action :authenticate_user!, only: %i[index]
+  before_action :applicant_present, only: %i[index]
   
   def index
     @applicant = Applicant.find_by(user: current_user)
@@ -38,6 +39,13 @@ class JobOffersController < ApplicationController
     params.require(:job_offer).permit(:initial_date, :salary, :benefits,
                                       :expectatives, :description,
                                       :job_opening_id)
+  end
+
+  def applicant_present
+    @applicant = Applicant.find_by(user: current_user)
+    if @applicant.blank?
+      redirect_to new_applicant_path
+    end
   end
 
   def find_current_job

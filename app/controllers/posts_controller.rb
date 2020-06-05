@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :find_applicant
   before_action :authenticate_head!
+  before_action :post_owner, only: %i[edit]
 
   def new
     @post = Post.new
@@ -48,5 +49,12 @@ class PostsController < ApplicationController
 
   def find_applicant
     @applicant = Applicant.find(params[:applicant_id])
+  end
+  def post_owner
+    @post = Post.find(params[:id])
+    if @post.head != current_head
+      redirect_to root_path
+      flash[:alert] = 'Ação não permitida'
+    end
   end
 end

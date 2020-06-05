@@ -2,7 +2,8 @@ class FeedbacksController < ApplicationController
   before_action :find_current_job, only: %i[new create]
   before_action :authenticate_head!, only: %i[new create]
   before_action :authenticate_user!, only: %i[index]
-  
+  before_action :applicant_present, only: %i[index]
+
   def index
     @applicant = Applicant.find_by(user: current_user)
     @job_opening = JobOpening.find_by(applicant: @applicant)
@@ -37,6 +38,13 @@ class FeedbacksController < ApplicationController
     params.require(:feedback).permit(:message, :job_opening_id)
   end
 
+  def applicant_present
+    @applicant = Applicant.find_by(user: current_user)
+    if @applicant.blank?
+      redirect_to new_applicant_path
+    end
+  end
+  
   def find_current_job
     @job_vacancy = JobVacancy.find(params[:job_vacancy_id])
     @job_opening = JobOpening.find_by(params[:job_opening_id])

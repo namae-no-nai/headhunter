@@ -1,7 +1,8 @@
 class JobOpeningsController < ApplicationController
   before_action :find_applicant
   before_action :authenticate_user!, only: %i[index show new create]
-
+  before_action :applicant_present, only: %i[index show new create]
+  
   def index
     @job_openings = JobOpening.where(applicant: @applicant)
   end
@@ -41,6 +42,13 @@ class JobOpeningsController < ApplicationController
   def job_opening_params
     params.require(:job_opening).permit(:letter, :status,
                                         :job_vacancy_id, :applicant_id)
+  end
+
+  def applicant_present
+    @applicant = Applicant.find_by(user: current_user)
+    if @applicant.blank?
+      redirect_to new_applicant_path
+    end
   end
 
   def find_applicant

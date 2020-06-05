@@ -4,6 +4,7 @@ feature 'Applicant searchs for job vacancy' do
   scenario 'sucessfully' do
     user = create(:user)
     job_vacancy = create(:job_vacancy)
+    applicant = create(:applicant, user:user)
     login_as user, scope: :user
     visit root_path
     click_on 'Ver vagas de emprego'
