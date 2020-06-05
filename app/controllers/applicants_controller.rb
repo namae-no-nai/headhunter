@@ -1,6 +1,7 @@
 class ApplicantsController < ApplicationController
   before_action :authenticate_user!, only: %i[new create edit update]
   before_action :authenticate_head!, only: %i[index]
+  before_action :authenticate_visitor, only: %i[show]
 
   def index
     @applicants = Applicant.all
@@ -53,5 +54,11 @@ class ApplicantsController < ApplicationController
     params.require(:applicant).permit(:full_name, :social_name, :birthdate,
                                        :academic, :description, :experience,
                                        :photo, :user_id)
-  end      
+  end
+
+  def authenticate_visitor
+    if !(user_signed_in? || head_signed_in?)
+      redirect_to root_path
+    end
+  end    
 end

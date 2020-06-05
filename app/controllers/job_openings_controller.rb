@@ -42,7 +42,8 @@ class JobOpeningsController < ApplicationController
     params.require(:job_opening).permit(:letter, :status,
                                         :job_vacancy_id, :applicant_id)
   end
+
   def find_applicant
     @applicant = Applicant.find_by(user: current_user)
-  end
+  end  
 end 

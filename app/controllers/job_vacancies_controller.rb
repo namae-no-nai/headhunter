@@ -1,6 +1,7 @@
 class JobVacanciesController < ApplicationController 
   before_action :authenticate_head!, only: %i[new create]
   before_action :authenticate_user!, only: %i[index]
+  before_action :authenticate_visitor, only: %i[show]
 
   def index
     @job_vacancies = JobVacancy.all
@@ -43,4 +44,9 @@ class JobVacanciesController < ApplicationController
                                         :income_range, :job_level, :deadline,
                                         :area, :head_id)
   end
+  def authenticate_visitor
+    if !(user_signed_in? || head_signed_in?)
+      redirect_to root_path
+    end
+  end  
 end
