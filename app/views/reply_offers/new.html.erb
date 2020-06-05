@@ -1,0 +1,11 @@
+<h1>Resposta para proposta</h1>
+
+<%= form_with model: [@reply_offer], local: true do |f|%>
+
+  <%= f.label :answer, 'Resposta'%>
+  <%= f.select :answer, ['Aceito', 'Rejeito'] %>
+  <%= f.label :message, 'Mensagem'%>
+  <%= f.text_field :message %>
+
+  <%= f.submit 'Enviar' %>
+<% end %>

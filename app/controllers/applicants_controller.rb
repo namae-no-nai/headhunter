@@ -1,6 +1,7 @@
 class ApplicantsController < ApplicationController
-  before_action :authenticate_user!, only: [:new]
-
+  before_action :authenticate_user!, only: %i[new create edit update]
+  before_action :authenticate_head!, only: %i[index]
+ #show
   def index
     @applicants = Applicant.all
   end

@@ -1,4 +1,4 @@
-<h1>Feedbacks</h1>
+<h1>Propostas</h1>
 
 <% if @job_offer.empty?%>
   <p><%= 'Nenhuma proposta'%><p>
@@ -19,6 +19,8 @@
     <dd><%= offer.benefits%><dd>
     <dt> Informações Adicionais </dt>
     <dd><%= offer.description%><dd>
+    <%= link_to 'Responder proposta', 
+                 new_reply_offer_path%>
   </dl>
   <%end%>
 <%end%>

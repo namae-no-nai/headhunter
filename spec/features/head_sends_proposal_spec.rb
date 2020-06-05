@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'head sends feedback' do
+feature 'head sends proposal' do
   scenario 'sucessfully' do
     head = create(:head)
     job_vacancy = create(:job_vacancy, head: head)

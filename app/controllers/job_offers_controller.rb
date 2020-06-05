@@ -1,6 +1,7 @@
 class JobOffersController < ApplicationController
   before_action :find_current_job, only: %i[new create]
 
+
   def index
     @applicant = Applicant.find_by(user: current_user)
     @job_opening = JobOpening.find_by(applicant: @applicant)
@@ -20,6 +21,7 @@ class JobOffersController < ApplicationController
   def create
     @job_offer = JobOffer.new(job_offer_params)
     @job_offer.job_opening = @job_opening
+    @job_offer.head = current_head
     if @job_offer.save
       @job_opening.accepted!
       flash[:notice] = 'Proposta enviada'
@@ -28,7 +30,7 @@ class JobOffersController < ApplicationController
       render :new
     end
   end
-  
+
   private
 
   def job_offer_params

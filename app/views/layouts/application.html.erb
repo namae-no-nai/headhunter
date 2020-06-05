@@ -11,8 +11,8 @@
   
   <nav class="navbar navbar-dark bg-dark", style='background-color: #e3f2fd;'>
      <span class="navbar-text">
-        <%= link_to 'Ver vagas de emprego', job_vacancies_path%>
     <% if user_signed_in? %>
+      <%= link_to 'Ver vagas de emprego', job_vacancies_path%>
       <%= link_to 'Home candidato', root_path %>
       <%= link_to 'Meus Feedbacks', feedbacks_path %>
       <%= link_to 'Minhas Propostas', job_offers_path %>
@@ -23,6 +23,7 @@
   <% if head_signed_in? %>
     <%= link_to 'Home headhunter', head_profiles_path%>
     <%= link_to 'Ver perfis cadastrados', applicants_path%>
+    <%= link_to 'Ver Propostas respondidas', reply_offers_path%>
     <%= link_to 'Cadastrar vaga de emprego', new_job_vacancy_path %>
     <%= link_to 'Sair', destroy_head_session_path, method: :delete %>
   <%end%>

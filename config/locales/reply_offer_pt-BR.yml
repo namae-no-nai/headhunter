@@ -1,0 +1,9 @@
+---
+pt-BR:
+  activerecord:
+    models:
+      reply_offer: Resposta
+    attributes:
+      reply_offer:
+        answer: Data de início
+        message: Salário

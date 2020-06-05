@@ -7,6 +7,7 @@ class CreateJobOffers < ActiveRecord::Migration[6.0]
       t.string :expectatives
       t.string :description
       t.references :job_opening, null: false, foreign_key: true
+      t.references :head, null: false, foreign_key: true
 
       t.timestamps
     end

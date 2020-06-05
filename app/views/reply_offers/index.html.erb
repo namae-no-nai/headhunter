@@ -1,0 +1,30 @@
+<h1>Repostas</h1>
+
+<% if @reply_offers.empty?%>
+  <p><%= 'Nenhuma proposta respondida'%><p>
+<%else%>
+<% @reply_offers.each do |reply|%>  
+  <dl>
+    <dt> Nome da Vaga </dt>
+    <dd><%= reply.job_offer.job_opening.job_vacancy.title %></dd>
+    <dt> Descrição </dt>
+    <dd><%= reply.job_offer.job_opening.job_vacancy.job_description %></dd>
+    <dt> Data de início </dt>
+    <dd><%= I18n.l(reply.job_offer.initial_date)%><dd>
+    <dt> Salário </dt>
+    <dd><%= number_to_currency(reply.job_offer.salary)%><dd>
+    <dt> Data de início </dt>
+    <dd><%= reply.job_offer.expectatives%><dd>
+    <dt> Benefícios </dt>
+    <dd><%= reply.job_offer.benefits%><dd>
+    <dt> Informações Adicionais </dt>
+    <dd><%= reply.job_offer.description%><dd>
+    <dt>Reposta<dt>
+    <dd><%= reply.answer%><dd>
+    <dt>Mensagem<dt>
+    <% if reply.message.present?%><dd>
+      <dd><%= reply.message%><dd>
+    <%end%>
+  </dl>
+  <%end%>
+<%end%>

@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    sessions: 'users/sessions',
+registrations: 'users/registrations'
+  }
   authenticated :user do
     root 'applicants#show', as: :user_authenticated_root
   end
-  devise_for :heads
+  devise_for :heads, controllers: {
+    sessions: 'heads/sessions',
+registrations: 'heads/registrations'
+  }
   authenticated :head do
     root 'head_profiles#index', as: :head_authenticated_root
   end
@@ -14,7 +20,8 @@ Rails.application.routes.draw do
   end
   resources :feedbacks, only: [:index]
   resources :head_profiles, only: [:index]
-  resources :job_offers, only: [:index]
+  resources :job_offers, only: %i[index]
+  resources :reply_offers, only: %i[index new create]
   resources :job_openings, only: [:index]
   resources :job_vacancies, only: %i[index show new create] do
     get 'search', on: :collection

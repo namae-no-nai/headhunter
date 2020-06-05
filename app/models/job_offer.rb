@@ -1,5 +1,6 @@
 class JobOffer < ApplicationRecord
   belongs_to :job_opening
+  belongs_to :head
 
   validates :initial_date, :salary, :benefits, :expectatives, :description,
              presence: true

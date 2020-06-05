@@ -5,5 +5,6 @@ FactoryBot.define do
     benefits { "Muitas coisas, tantas que eu não posso nem dizer" }
     expectatives { "Pro atividade, Trabalho em grupo, desafiar limites" }
     description { "outras muitas coisas que acabam não acontecendo não sei" }
+    head
   end
 end
