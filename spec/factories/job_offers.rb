@@ -6,5 +6,6 @@ FactoryBot.define do
     expectatives { "Pro atividade, Trabalho em grupo, desafiar limites" }
     description { "outras muitas coisas que acabam não acontecendo não sei" }
     head
+    job_opening
   end
 end

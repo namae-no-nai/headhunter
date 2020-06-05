@@ -14,7 +14,7 @@ feature 'Applicant fills in form' do
     fill_in 'Formação', with: 'Ensino Superior'
     fill_in 'Descrição', with: 'Área de ensino em 5 anos'
     fill_in 'Experiência Profissional', with: 'X anos'
-    attach_file('Foto', 'app/assets/' 'download.jpeg')
+    attach_file('Foto', 'app/assets/images/' 'download.jpeg')
 
     click_on 'Enviar'
 

@@ -7,6 +7,6 @@ FactoryBot.define do
     academic { 'Ensino Superior' }
     description { 'Área de ensino em 5 anos' }
     experience { 'X anos' }
-    photo { Rack::Test::UploadedFile.new('app/assets/download.jpeg', 'download.jpeg') }
+    photo { Rack::Test::UploadedFile.new('app/assets/images/download.jpeg', 'download.jpeg') }
   end
 end
