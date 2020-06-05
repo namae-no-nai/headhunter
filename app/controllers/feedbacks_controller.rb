@@ -1,6 +1,7 @@
 class FeedbacksController < ApplicationController
   before_action :find_current_job, only: %i[new create]
-
+  before_action :authenticate_head!, only: %i[new create]
+  before_action :authenticate_user!, only: %i[index]
   def index
     @applicant = Applicant.find_by(user: current_user)
     @job_opening = JobOpening.find_by(applicant: @applicant)

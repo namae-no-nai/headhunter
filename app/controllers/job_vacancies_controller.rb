@@ -1,5 +1,6 @@
 class JobVacanciesController < ApplicationController 
   before_action :authenticate_head!, only: %i[new create]
+  before_action :authenticate_user!, only: %i[index]
 
   def index
     @job_vacancies = JobVacancy.all

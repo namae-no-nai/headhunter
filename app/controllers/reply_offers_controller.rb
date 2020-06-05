@@ -1,5 +1,7 @@
 class ReplyOffersController < ApplicationController
   before_action :find_current_offer, only: %i[new create]
+  before_action :authenticate_head!, only: %i[index]
+  before_action :authenticate_user!, only: %i[new create]
 
   def index
     @job_offer = JobOffer.find_by(head: current_head)

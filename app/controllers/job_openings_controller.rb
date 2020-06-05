@@ -1,5 +1,6 @@
 class JobOpeningsController < ApplicationController
   before_action :find_applicant
+  before_action :authenticate_user!, only: %i[index show new create]
 
   def index
     @job_openings = JobOpening.where(applicant: @applicant)
