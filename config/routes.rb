@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
     sessions: 'users/sessions',
-registrations: 'users/registrations'
+    registrations: 'users/registrations'
   }
   authenticated :user do
     root 'applicants#show', as: :user_authenticated_root
   end
   devise_for :heads, controllers: {
     sessions: 'heads/sessions',
-registrations: 'heads/registrations'
+    registrations: 'heads/registrations'
   }
   authenticated :head do
     root 'head_profiles#index', as: :head_authenticated_root
