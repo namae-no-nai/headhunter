@@ -1,10 +1,11 @@
+# frozen_string_literal: true
+
 class JobOpeningsController < ApplicationController
   before_action :authenticate_visitor
   before_action :authenticate_head, only: %i[index new create]
   before_action :find_applicant
   before_action :already_sent, only: %i[new create]
 
-  
   def index
     @job_openings = JobOpening.where(applicant: @applicant)
   end
@@ -43,9 +44,7 @@ class JobOpeningsController < ApplicationController
   end
 
   def authenticate_head
-    if head_signed_in?
-      redirect_to root_path
-    end
+    redirect_to root_path if head_signed_in?
   end
 
   def already_sent
@@ -59,10 +58,8 @@ class JobOpeningsController < ApplicationController
   end
 
   def authenticate_visitor
-    if not user_signed_in? 
-      if not head_signed_in?
-        redirect_to root_path
-      end
+    unless user_signed_in?
+      redirect_to root_path unless head_signed_in?
     end
   end
-end 
+end

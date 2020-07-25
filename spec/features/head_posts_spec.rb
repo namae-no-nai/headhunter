@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'Head posts a comment' do
@@ -19,7 +21,7 @@ feature 'Head posts a comment' do
   end
   scenario 'cannot be blank' do
     head = create(:head)
-    applicant = create(:applicant)
+    create(:applicant)
 
     login_as head, scope: :head
 

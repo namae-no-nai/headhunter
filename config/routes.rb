@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   devise_for :users, controllers: {
     sessions: 'users/sessions',
@@ -27,6 +29,6 @@ Rails.application.routes.draw do
     get 'search', on: :collection
     resources :feedbacks, only: %i[show new create]
     resources :job_offers, only: %i[new create]
-    resources :job_openings, only: %i[show new create] 
+    resources :job_openings, only: %i[show new create]
   end
 end

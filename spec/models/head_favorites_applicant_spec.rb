@@ -1,12 +1,14 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'Head favorites applicant' do
   scenario 'sucessfully' do
     head = create(:head)
-    applicant = create(:applicant)
+    create(:applicant)
 
     login_as head, scope: :head
-    
+
     visit root_path
     click_on 'Ver perfis cadastrados'
     click_on 'Mago'
@@ -19,9 +21,9 @@ feature 'Head favorites applicant' do
   scenario 'desfav' do
     head = create(:head)
     applicant = create(:applicant)
-    favorite = create(:favorite, applicant: applicant, head: head)
+    create(:favorite, applicant: applicant, head: head)
     login_as head, scope: :head
-    
+
     visit root_path
     click_on 'Ver perfis cadastrados'
     click_on 'Mago'
@@ -31,4 +33,4 @@ feature 'Head favorites applicant' do
     expect(page).not_to have_content('⭐')
     expect(page).to have_content('Favoritar candidato')
   end
-end  
+end

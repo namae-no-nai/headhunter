@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'Head sees all profiles' do
   scenario 'sucessfully' do
     head = create(:head)
-  
+
     login_as head, scope: :head
     visit root_path
     click_on 'Ver perfis cadastrados'

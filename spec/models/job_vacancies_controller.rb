@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class JobVacanciesController < ApplicationController
-	before_action :authenticate_visitor, only: %i[show new create destroy]
-	before_action :authenticate_applicant, only: %i[new create edit update destroy] 
+  before_action :authenticate_visitor, only: %i[show new create destroy]
+  before_action :authenticate_applicant, only: %i[new create edit update destroy]
 
   def index
     @job_vacancies = JobVacancy.all
@@ -53,16 +55,12 @@ class JobVacanciesController < ApplicationController
   end
 
   def authenticate_applicant
-    if user_signed_in?
-      redirect_to root_path
-    end
+    redirect_to root_path if user_signed_in?
   end
 
   def authenticate_visitor
-    if not user_signed_in? 
-      if not head_signed_in?
-        redirect_to root_path
-      end
+    unless user_signed_in?
+      redirect_to root_path unless head_signed_in?
     end
   end
-end  
+end

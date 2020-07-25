@@ -1,13 +1,15 @@
+# frozen_string_literal: true
+
 class JobOffersController < ApplicationController
   before_action :find_current_job, only: %i[new create]
   before_action :authenticate_head!, only: %i[new create]
   before_action :authenticate_user!, only: %i[index]
   before_action :applicant_present, only: %i[index]
-  
+
   def index
     @applicant = Applicant.find_by(user: current_user)
     @job_opening = JobOpening.find_by(applicant: @applicant)
-    @job_offer = JobOffer.where(job_opening:@job_opening)
+    @job_offer = JobOffer.where(job_opening: @job_opening)
   end
 
   def new
@@ -43,9 +45,7 @@ class JobOffersController < ApplicationController
 
   def applicant_present
     @applicant = Applicant.find_by(user: current_user)
-    if @applicant.blank?
-      redirect_to new_applicant_path
-    end
+    redirect_to new_applicant_path if @applicant.blank?
   end
 
   def find_current_job
