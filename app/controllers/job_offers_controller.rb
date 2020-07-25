@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Controller related to display jobs and changing it state
 class JobOffersController < ApplicationController
   before_action :find_current_job, only: %i[new create]
   before_action :authenticate_head!, only: %i[new create]

@@ -6,7 +6,7 @@ feature 'User sees profile' do
   scenario 'sucessfully' do
     user = create(:user)
     head = create(:head)
-    applicant = create(:applicant, user: user)
+    create(:applicant, user: user)
 
     login_as user, scope: :user
 

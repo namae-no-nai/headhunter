@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Related to the state of job applied by an applicant
 class JobVacanciesController < ApplicationController
   before_action :authenticate_head!, only: %i[new create]
   before_action :authenticate_user!, only: %i[index]
@@ -12,10 +13,10 @@ class JobVacanciesController < ApplicationController
   def show
     @job_vacancy = JobVacancy.find(params[:id])
     @job_openings = JobOpening.where(job_vacancy: @job_vacancy)
-    if user_signed_in?
-      @applicant = Applicant.find_by(user: current_user)
-      @job_openings = JobOpening.where(applicant: @applicant, job_vacancy: @job_vacancy)
-    end
+    return unless user_signed_in?
+
+    @applicant = Applicant.find_by(user: current_user)
+    @job_openings = JobOpening.where(applicant: @applicant, job_vacancy: @job_vacancy)
   end
 
   def new
@@ -49,9 +50,9 @@ class JobVacanciesController < ApplicationController
 
   def authenticate_visitor
     redirect_to root_path unless user_signed_in? || head_signed_in?
-    if user_signed_in?
-      @applicant = Applicant.find_by(user: current_user)
-      redirect_to new_applicant_path if @applicant.blank?
-    end
+    return unless user_signed_in?
+
+    @applicant = Applicant.find_by(user: current_user)
+    redirect_to new_applicant_path if @applicant.blank?
   end
 end

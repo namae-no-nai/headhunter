@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Related to the applying of a job
 class JobOpeningsController < ApplicationController
   before_action :find_applicant
   before_action :authenticate_user!, only: %i[index show new create]
@@ -12,7 +13,8 @@ class JobOpeningsController < ApplicationController
   def show
     @job_vacancy = JobVacancy.find(params[:id])
     @job_openings = JobOpening.where(job_vacancy: @job_vacancy)
-    if user_signed_in?
+    return unless user_signed_in?
+
       @job_vacancy = JobVacancy.find(params[:job_vacancy_id])
       @job_opening = JobOpening.find_by(job_vacancy: @job_vacancy,
                                         applicant: @applicant)

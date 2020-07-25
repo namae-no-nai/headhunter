@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Profile of the headhunter
 class HeadProfilesController < ApplicationController
   before_action :authenticate_head!
 

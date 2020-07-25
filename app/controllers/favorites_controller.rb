@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Used for hedhunter to favorite an applicant
 class FavoritesController < ApplicationController
   before_action :authenticate_head!
 

@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# Response of the applicant to headhunter proposal
 class ReplyOffersController < ApplicationController
   before_action :find_current_offer, only: %i[new create]
   before_action :authenticate_head!, only: %i[index]

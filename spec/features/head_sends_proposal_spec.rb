@@ -8,7 +8,7 @@ feature 'head sends proposal' do
     job_vacancy = create(:job_vacancy, head: head)
     applicant = create(:applicant)
     create(:job_opening, job_vacancy: job_vacancy,
-                                       applicant: applicant)
+                         applicant: applicant)
 
     login_as head, scope: :head
 
@@ -31,18 +31,14 @@ feature 'head sends proposal' do
     job_vacancy = create(:job_vacancy, head: head)
     applicant = create(:applicant)
     create(:job_opening, job_vacancy: job_vacancy,
-                                       applicant: applicant)
+                         applicant: applicant)
 
     login_as head, scope: :head
 
     visit root_path
     click_on 'Ver detalhes'
     click_on 'Aceitar e enviar Proposta'
-    fill_in 'Data de início', with: ''
-    fill_in 'Salário', with: ''
-    fill_in 'Benefícios', with: ''
-    fill_in 'Informações adicionais', with: ''
-    fill_in 'Expectativas', with: ''
+
     click_on 'Enviar'
 
     expect(page).to have_content('Data de início não pode ficar em branco')
@@ -58,7 +54,7 @@ feature 'head sends proposal' do
     job_vacancy = create(:job_vacancy, head: head)
     applicant = create(:applicant)
     create(:job_opening, job_vacancy: job_vacancy,
-                                       applicant: applicant)
+                         applicant: applicant)
 
     login_as head, scope: :head
 
