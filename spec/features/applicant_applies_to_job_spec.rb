@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'Applicant applies for a job' do
@@ -15,7 +17,7 @@ feature 'Applicant applies for a job' do
       click_on 'Me candidatar'
       fill_in 'Motivação', with: 'Me manter vivo'
       click_on 'Enviar'
-      
+
       expect(page).to have_content('Mago')
       expect(page).to have_content('Ser implacável')
       expect(page).to have_content('magia')
@@ -25,8 +27,8 @@ feature 'Applicant applies for a job' do
     end
     scenario 'cannot be blank' do
       user = create(:user)
-      applicant = create(:applicant, user: user)
-      job_vacancy = create(:job_vacancy)
+      create(:applicant, user: user)
+      create(:job_vacancy)
 
       login_as user, scope: :user
 

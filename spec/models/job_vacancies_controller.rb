@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class JobVacanciesController < ApplicationController
-	before_action :authenticate_visitor, only: %i[show new create destroy]
-	before_action :authenticate_applicant, only: %i[new create edit update destroy] 
+  before_action :authenticate_visitor, only: %i[show new create destroy]
+  before_action :authenticate_applicant, only: %i[new create edit update destroy]
 
   def index
     @job_vacancies = JobVacancy.all
@@ -11,7 +13,8 @@ class JobVacanciesController < ApplicationController
     @job_offer = JobOffer.where(job_vacancy: @job_vacancy)
     @reply_job_offer = ReplyJobOffer.where(job_offer: @job_offers)
     @job_openings = JobOpening.where(job_vacancy: @job_vacancy)
-    if user_signed_in?
+
+    unless user_signed_in?
       @applicant = Applicant.find_by(user: current_user)
       @job_openings = JobOpening.where(applicant: @applicant, job_vacancy: @job_vacancy)
     end
@@ -53,16 +56,12 @@ class JobVacanciesController < ApplicationController
   end
 
   def authenticate_applicant
-    if user_signed_in?
-      redirect_to root_path
-    end
+    redirect_to root_path if user_signed_in?
   end
 
   def authenticate_visitor
-    if not user_signed_in? 
-      if not head_signed_in?
-        redirect_to root_path
-      end
+    unless user_signed_in?
+      redirect_to root_path unless head_signed_in?
     end
   end
-end  
+end

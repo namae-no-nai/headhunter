@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 class JobVacancy < ApplicationRecord
   belongs_to :head
-  
+
   validates :title, :job_description, :desired_skills, :income_range,
             :job_level, :deadline, :area,
             presence: true, length: { maximum: 4000 }
@@ -12,8 +14,6 @@ class JobVacancy < ApplicationRecord
                  }
 
   def valid_date
-    if deadline.present? && deadline < Date.today
-      errors.add(:deadline, 'não pode ser anterior a hoje')
-    end
+    errors.add(:deadline, 'não pode ser anterior a hoje') if deadline.present? && deadline < Date.today
   end
 end

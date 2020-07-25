@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class HeadProfilesController < ApplicationController
   before_action :authenticate_head!
 

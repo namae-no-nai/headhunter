@@ -1,4 +1,6 @@
-class JobVacanciesController < ApplicationController 
+# frozen_string_literal: true
+
+class JobVacanciesController < ApplicationController
   before_action :authenticate_head!, only: %i[new create]
   before_action :authenticate_user!, only: %i[index]
   before_action :authenticate_visitor, only: %i[index search]
@@ -6,7 +8,7 @@ class JobVacanciesController < ApplicationController
   def index
     @job_vacancies = JobVacancy.all
   end
-  
+
   def show
     @job_vacancy = JobVacancy.find(params[:id])
     @job_openings = JobOpening.where(job_vacancy: @job_vacancy)
@@ -35,24 +37,21 @@ class JobVacanciesController < ApplicationController
     @job_vacancies = JobVacancy.search(params[:q])
     render :index
   end
-  
+
   private
-  
+
   def job_params
     params.require(:job_vacancy).permit(:title, :job_description,
                                         :desired_skills,
                                         :income_range, :job_level, :deadline,
                                         :area, :head_id)
   end
+
   def authenticate_visitor
-    if !(user_signed_in? || head_signed_in?)
-      redirect_to root_path
-    end
+    redirect_to root_path unless user_signed_in? || head_signed_in?
     if user_signed_in?
       @applicant = Applicant.find_by(user: current_user)
-      if @applicant.blank?
-        redirect_to new_applicant_path
-      end
+      redirect_to new_applicant_path if @applicant.blank?
     end
-  end  
+  end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'Head creates job vacancy' do
@@ -77,6 +79,6 @@ feature 'Head creates job vacancy' do
 
     click_on 'Enviar'
 
-    expect(page).to have_content('Data limite não pode ser anterior a hoje') 
+    expect(page).to have_content('Data limite não pode ser anterior a hoje')
   end
 end

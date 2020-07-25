@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
   before_action :find_applicant
   before_action :authenticate_user
-  before_action :can_edit,only: %i[edit update]
+  before_action :can_edit, only: %i[edit update]
 
   def new
     @post = Post.new
@@ -50,19 +52,17 @@ class PostsController < ApplicationController
   def find_applicant
     @applicant = Applicant.find(params[:applicant_id])
   end
-  
+
   def can_edit
     @head = Head.find(params[:id])
     @post = Post.find(params[:id])
-    if @post.head != @head
+    return if @post.head == @head
       flash[:notice] = 'cannot edit'
       redirect_to applicants_path(@applicant)
     end
   end
 
   def authenticate_user
-    if user_signed_in?
-      redirect_to @applicant
-	  end
-	end
+    redirect_to @applicant if user_signed_in?
+  end
 end

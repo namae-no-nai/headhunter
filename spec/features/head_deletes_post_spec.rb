@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'Head deletes a comment' do
@@ -13,7 +15,7 @@ feature 'Head deletes a comment' do
     click_on 'Mago'
     expect(page).to have_content('Um post')
     click_on 'Deletar'
-    
+
     expect(page).not_to have_content('Um post')
   end
 end

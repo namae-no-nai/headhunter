@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 feature 'Visitor open home page' do
@@ -8,4 +10,3 @@ feature 'Visitor open home page' do
     expect(page).to have_content('Seja bem vindo')
   end
 end
-
