@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class ReplyOffersController < ApplicationController
   before_action :find_current_offer, only: %i[new create]
   before_action :authenticate_head!, only: %i[index]
@@ -26,20 +24,22 @@ class ReplyOffersController < ApplicationController
     @reply_offer.job_offer = @job_offer
     @reply_offer.save
     flash[:notice] = 'Proposta enviada'
-    redirect_to job_offers_path
+    redirect_to job_offers_path   
   end
 
   private
 
   def applicant_present
     @applicant = Applicant.find_by(user: current_user)
-    redirect_to new_applicant_path if @applicant.blank?
+    if @applicant.blank?
+      redirect_to new_applicant_path
+    end
   end
+ 
 
   def reply_params
     params.require(:reply_offer).permit(:answer, :message)
   end
-
   def find_current_offer
     @job_offer = JobOffer.find_by(params[:job_offer_id])
   end

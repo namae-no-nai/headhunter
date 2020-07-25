@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class JobOpening < ApplicationRecord
   belongs_to :applicant
   belongs_to :job_vacancy

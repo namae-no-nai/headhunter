@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class FeedbacksController < ApplicationController
   before_action :find_current_job, only: %i[new create]
   before_action :authenticate_head!, only: %i[new create]
@@ -9,9 +7,9 @@ class FeedbacksController < ApplicationController
   def index
     @applicant = Applicant.find_by(user: current_user)
     @job_opening = JobOpening.find_by(applicant: @applicant)
-    @feedbacks = Feedback.where(job_opening: @job_opening)
+    @feedbacks = Feedback.where(job_opening:@job_opening)
   end
-
+  
   def new
     @feedback = Feedback.find_by(job_opening: @job_opening)
     if @feedback
@@ -33,7 +31,7 @@ class FeedbacksController < ApplicationController
       render :new
     end
   end
-
+  
   private
 
   def feedback_params
@@ -42,9 +40,11 @@ class FeedbacksController < ApplicationController
 
   def applicant_present
     @applicant = Applicant.find_by(user: current_user)
-    redirect_to new_applicant_path if @applicant.blank?
+    if @applicant.blank?
+      redirect_to new_applicant_path
+    end
   end
-
+  
   def find_current_job
     @job_vacancy = JobVacancy.find(params[:job_vacancy_id])
     @job_opening = JobOpening.find_by(params[:job_opening_id])

@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class PostsController < ApplicationController
   before_action :find_applicant
   before_action :authenticate_head!
@@ -52,7 +50,6 @@ class PostsController < ApplicationController
   def find_applicant
     @applicant = Applicant.find(params[:applicant_id])
   end
-
   def post_owner
     @post = Post.find(params[:id])
     if @post.head != current_head

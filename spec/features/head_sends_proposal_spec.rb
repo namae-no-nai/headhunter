@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 feature 'head sends proposal' do
@@ -7,8 +5,8 @@ feature 'head sends proposal' do
     head = create(:head)
     job_vacancy = create(:job_vacancy, head: head)
     applicant = create(:applicant)
-    create(:job_opening, job_vacancy: job_vacancy,
-                         applicant: applicant)
+    job_opening = create(:job_opening, job_vacancy: job_vacancy, 
+                                       applicant: applicant)
 
     login_as head, scope: :head
 
@@ -24,14 +22,15 @@ feature 'head sends proposal' do
 
     expect(current_path).to eq(job_vacancy_path(job_vacancy))
     expect(page).to have_content('Proposta enviada')
+
   end
 
   scenario 'cannot be blank' do
     head = create(:head)
     job_vacancy = create(:job_vacancy, head: head)
     applicant = create(:applicant)
-    create(:job_opening, job_vacancy: job_vacancy,
-                         applicant: applicant)
+    job_opening = create(:job_opening, job_vacancy: job_vacancy, 
+                                       applicant: applicant)
 
     login_as head, scope: :head
 
@@ -57,8 +56,8 @@ feature 'head sends proposal' do
     head = create(:head)
     job_vacancy = create(:job_vacancy, head: head)
     applicant = create(:applicant)
-    create(:job_opening, job_vacancy: job_vacancy,
-                         applicant: applicant)
+    job_opening = create(:job_opening, job_vacancy: job_vacancy, 
+                                       applicant: applicant)
 
     login_as head, scope: :head
 
@@ -73,21 +72,22 @@ feature 'head sends proposal' do
     click_on 'Enviar'
 
     expect(page).to have_content('Data de início não pode ser anterior a hoje')
+
   end
 
   scenario 'already exists' do
     head = create(:head)
     job_vacancy = create(:job_vacancy, head: head)
     applicant = create(:applicant)
-    job_opening = create(:job_opening, job_vacancy: job_vacancy,
-                                       applicant: applicant)
-    create(:job_offer, job_opening: job_opening)
+    job_opening = create(:job_opening, job_vacancy: job_vacancy, 
+                                        applicant: applicant)
+    job_offer = create(:job_offer, job_opening: job_opening)
 
     login_as head, scope: :head
 
     visit root_path
     click_on 'Ver detalhes'
-    click_on 'Aceitar e enviar Proposta'
+    click_on 'Aceitar e enviar Proposta'      
 
     expect(current_path).to eq(job_vacancy_path(job_vacancy))
     expect(page).to have_content('Proposta já enviada')

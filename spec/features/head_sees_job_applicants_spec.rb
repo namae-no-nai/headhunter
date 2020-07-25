@@ -1,12 +1,10 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 feature 'head sees applicants for vacancies' do
   scenario 'any applicants' do
     head = create(:head)
     job_vacancy = create(:job_vacancy, head: head)
-    create(:job_opening, job_vacancy: job_vacancy)
+    job_opening = create(:job_opening, job_vacancy: job_vacancy)
 
     login_as head, scope: :head
 
@@ -18,3 +16,4 @@ feature 'head sees applicants for vacancies' do
     expect(page).to have_content('Em Espera')
   end
 end
+

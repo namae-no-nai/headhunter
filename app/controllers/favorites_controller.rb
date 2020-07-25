@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class FavoritesController < ApplicationController
   before_action :authenticate_head!
 
@@ -13,7 +11,7 @@ class FavoritesController < ApplicationController
   end
 
   def destroy
-    @favorite = Favorite.search(params[:applicant_id], current_head)
+    @favorite = Favorite.search(params[:applicant_id],current_head)
     @favorite.destroy
     flash[:notice] = 'Candidato não é mais destacado'
     redirect_to applicant_path(@favorite.applicant)

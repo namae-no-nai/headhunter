@@ -1,11 +1,9 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 feature 'Head edits a comment' do
   scenario 'sucessfully' do
     head = create(:head)
-    create(:applicant)
+    applicant = create(:applicant)
     login_as head, scope: :head
 
     visit root_path
@@ -22,7 +20,7 @@ feature 'Head edits a comment' do
   end
   scenario 'sucessfully' do
     head = create(:head)
-    create(:applicant)
+    applicant = create(:applicant)
     login_as head, scope: :head
 
     visit root_path

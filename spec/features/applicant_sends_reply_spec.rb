@@ -1,15 +1,13 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 feature 'User sees proposals' do
   scenario 'sucessfully' do
     head = create(:head)
     user = create(:user)
-    applicant = create(:applicant, user: user)
-    job_opening = create(:job_opening, applicant: applicant)
-    create(:job_offer, job_opening: job_opening, head: head)
-
+    applicant = create(:applicant, user:user)
+    job_opening = create(:job_opening, applicant:applicant)
+    job_offer = create(:job_offer, job_opening: job_opening, head: head)
+  
     login_as user, scope: :user
     visit root_path
     click_on 'Minhas Propostas'
@@ -25,10 +23,10 @@ feature 'User sees proposals' do
   scenario 'already sent' do
     head = create(:head)
     user = create(:user)
-    applicant = create(:applicant, user: user)
-    job_opening = create(:job_opening, applicant: applicant)
+    applicant = create(:applicant, user:user)
+    job_opening = create(:job_opening, applicant:applicant)
     job_offer = create(:job_offer, job_opening: job_opening, head: head)
-    create(:reply_offer, job_offer: job_offer)
+    reply_offer = create(:reply_offer, job_offer: job_offer)
     login_as user, scope: :user
     visit root_path
     click_on 'Minhas Propostas'
@@ -38,3 +36,4 @@ feature 'User sees proposals' do
     expect(page).to have_content('Proposta já enviada')
   end
 end
+    

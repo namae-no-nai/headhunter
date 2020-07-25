@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -12,158 +10,159 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_200_605_010_525) do
-  create_table 'active_storage_attachments', force: :cascade do |t|
-    t.string 'name', null: false
-    t.string 'record_type', null: false
-    t.integer 'record_id', null: false
-    t.integer 'blob_id', null: false
-    t.datetime 'created_at', null: false
-    t.index ['blob_id'], name: 'index_active_storage_attachments_on_blob_id'
-    t.index %w[record_type record_id name blob_id], name: 'index_active_storage_attachments_uniqueness', unique: true
+ActiveRecord::Schema.define(version: 2020_06_05_010525) do
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.integer "record_id", null: false
+    t.integer "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table 'active_storage_blobs', force: :cascade do |t|
-    t.string 'key', null: false
-    t.string 'filename', null: false
-    t.string 'content_type'
-    t.text 'metadata'
-    t.bigint 'byte_size', null: false
-    t.string 'checksum', null: false
-    t.datetime 'created_at', null: false
-    t.index ['key'], name: 'index_active_storage_blobs_on_key', unique: true
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table 'applicants', force: :cascade do |t|
-    t.string 'full_name'
-    t.string 'social_name'
-    t.date 'birthdate'
-    t.string 'academic'
-    t.string 'description'
-    t.string 'experience'
-    t.integer 'user_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['user_id'], name: 'index_applicants_on_user_id'
+  create_table "applicants", force: :cascade do |t|
+    t.string "full_name"
+    t.string "social_name"
+    t.date "birthdate"
+    t.string "academic"
+    t.string "description"
+    t.string "experience"
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_applicants_on_user_id"
   end
 
-  create_table 'favorites', force: :cascade do |t|
-    t.integer 'applicant_id', null: false
-    t.integer 'head_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['applicant_id'], name: 'index_favorites_on_applicant_id'
-    t.index ['head_id'], name: 'index_favorites_on_head_id'
+  create_table "favorites", force: :cascade do |t|
+    t.integer "applicant_id", null: false
+    t.integer "head_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["applicant_id"], name: "index_favorites_on_applicant_id"
+    t.index ["head_id"], name: "index_favorites_on_head_id"
   end
 
-  create_table 'feedbacks', force: :cascade do |t|
-    t.string 'message'
-    t.integer 'job_opening_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['job_opening_id'], name: 'index_feedbacks_on_job_opening_id'
+  create_table "feedbacks", force: :cascade do |t|
+    t.string "message"
+    t.integer "job_opening_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["job_opening_id"], name: "index_feedbacks_on_job_opening_id"
   end
 
-  create_table 'head_profiles', force: :cascade do |t|
-    t.integer 'head_id'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['head_id'], name: 'index_head_profiles_on_head_id'
+  create_table "head_profiles", force: :cascade do |t|
+    t.integer "head_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["head_id"], name: "index_head_profiles_on_head_id"
   end
 
-  create_table 'heads', force: :cascade do |t|
-    t.string 'email', default: '', null: false
-    t.string 'encrypted_password', default: '', null: false
-    t.string 'reset_password_token'
-    t.datetime 'reset_password_sent_at'
-    t.datetime 'remember_created_at'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['email'], name: 'index_heads_on_email', unique: true
-    t.index ['reset_password_token'], name: 'index_heads_on_reset_password_token', unique: true
+  create_table "heads", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_heads_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_heads_on_reset_password_token", unique: true
   end
 
-  create_table 'job_offers', force: :cascade do |t|
-    t.date 'initial_date'
-    t.integer 'salary'
-    t.string 'benefits'
-    t.string 'expectatives'
-    t.string 'description'
-    t.integer 'job_opening_id', null: false
-    t.integer 'head_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['head_id'], name: 'index_job_offers_on_head_id'
-    t.index ['job_opening_id'], name: 'index_job_offers_on_job_opening_id'
+  create_table "job_offers", force: :cascade do |t|
+    t.date "initial_date"
+    t.integer "salary"
+    t.string "benefits"
+    t.string "expectatives"
+    t.string "description"
+    t.integer "job_opening_id", null: false
+    t.integer "head_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["head_id"], name: "index_job_offers_on_head_id"
+    t.index ["job_opening_id"], name: "index_job_offers_on_job_opening_id"
   end
 
-  create_table 'job_openings', force: :cascade do |t|
-    t.string 'letter'
-    t.integer 'status', default: 0
-    t.integer 'applicant_id', null: false
-    t.integer 'job_vacancy_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['applicant_id'], name: 'index_job_openings_on_applicant_id'
-    t.index ['job_vacancy_id'], name: 'index_job_openings_on_job_vacancy_id'
+  create_table "job_openings", force: :cascade do |t|
+    t.string "letter"
+    t.integer "status", default: 0
+    t.integer "applicant_id", null: false
+    t.integer "job_vacancy_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["applicant_id"], name: "index_job_openings_on_applicant_id"
+    t.index ["job_vacancy_id"], name: "index_job_openings_on_job_vacancy_id"
   end
 
-  create_table 'job_vacancies', force: :cascade do |t|
-    t.string 'title'
-    t.string 'job_description'
-    t.string 'desired_skills'
-    t.string 'income_range'
-    t.string 'job_level'
-    t.date 'deadline'
-    t.string 'area'
-    t.integer 'head_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['head_id'], name: 'index_job_vacancies_on_head_id'
+  create_table "job_vacancies", force: :cascade do |t|
+    t.string "title"
+    t.string "job_description"
+    t.string "desired_skills"
+    t.string "income_range"
+    t.string "job_level"
+    t.date "deadline"
+    t.string "area"
+    t.integer "head_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["head_id"], name: "index_job_vacancies_on_head_id"
   end
 
-  create_table 'posts', force: :cascade do |t|
-    t.integer 'applicant_id', null: false
-    t.integer 'head_id', null: false
-    t.string 'content'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['applicant_id'], name: 'index_posts_on_applicant_id'
-    t.index ['head_id'], name: 'index_posts_on_head_id'
+  create_table "posts", force: :cascade do |t|
+    t.integer "applicant_id", null: false
+    t.integer "head_id", null: false
+    t.string "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["applicant_id"], name: "index_posts_on_applicant_id"
+    t.index ["head_id"], name: "index_posts_on_head_id"
   end
 
-  create_table 'reply_offers', force: :cascade do |t|
-    t.string 'answer'
-    t.string 'message'
-    t.integer 'job_offer_id', null: false
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['job_offer_id'], name: 'index_reply_offers_on_job_offer_id'
+  create_table "reply_offers", force: :cascade do |t|
+    t.string "answer"
+    t.string "message"
+    t.integer "job_offer_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["job_offer_id"], name: "index_reply_offers_on_job_offer_id"
   end
 
-  create_table 'users', force: :cascade do |t|
-    t.string 'email', default: '', null: false
-    t.string 'encrypted_password', default: '', null: false
-    t.string 'reset_password_token'
-    t.datetime 'reset_password_sent_at'
-    t.datetime 'remember_created_at'
-    t.datetime 'created_at', precision: 6, null: false
-    t.datetime 'updated_at', precision: 6, null: false
-    t.index ['email'], name: 'index_users_on_email', unique: true
-    t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
+  create_table "users", force: :cascade do |t|
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key 'active_storage_attachments', 'active_storage_blobs', column: 'blob_id'
-  add_foreign_key 'applicants', 'users'
-  add_foreign_key 'favorites', 'applicants'
-  add_foreign_key 'favorites', 'heads'
-  add_foreign_key 'feedbacks', 'job_openings'
-  add_foreign_key 'job_offers', 'heads'
-  add_foreign_key 'job_offers', 'job_openings'
-  add_foreign_key 'job_openings', 'applicants'
-  add_foreign_key 'job_openings', 'job_vacancies'
-  add_foreign_key 'job_vacancies', 'heads'
-  add_foreign_key 'posts', 'applicants'
-  add_foreign_key 'posts', 'heads'
-  add_foreign_key 'reply_offers', 'job_offers'
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "applicants", "users"
+  add_foreign_key "favorites", "applicants"
+  add_foreign_key "favorites", "heads"
+  add_foreign_key "feedbacks", "job_openings"
+  add_foreign_key "job_offers", "heads"
+  add_foreign_key "job_offers", "job_openings"
+  add_foreign_key "job_openings", "applicants"
+  add_foreign_key "job_openings", "job_vacancies"
+  add_foreign_key "job_vacancies", "heads"
+  add_foreign_key "posts", "applicants"
+  add_foreign_key "posts", "heads"
+  add_foreign_key "reply_offers", "job_offers"
 end

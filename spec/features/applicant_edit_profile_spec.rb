@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 feature 'Applicant edits profile' do
@@ -55,7 +53,7 @@ feature 'Applicant edits profile' do
   scenario 'logs out' do
     visit root_path
     click_on 'Sair'
-
+  
     expect(current_path).to eq('/')
   end
 end

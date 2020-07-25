@@ -1,15 +1,14 @@
-# frozen_string_literal: true
-
 class ApplicantsController < ApplicationController
   before_action :authenticate_user!, only: %i[new create edit update]
   before_action :authenticate_head!, only: %i[index]
   before_action :authenticate_visitor, only: %i[show]
   before_action :profile_owner, only: %i[edit update]
+  
 
   def index
     @applicants = Applicant.all
   end
-
+  
   def show
     if user_signed_in?
       if @applicant = Applicant.find_by(user: current_user)
@@ -24,11 +23,11 @@ class ApplicantsController < ApplicationController
       @favorite = Favorite.where(head_id: current_head, applicant_id: @applicant)
     end
   end
-
+  
   def new
     @applicant = Applicant.new
   end
-
+  
   def create
     @applicant = Applicant.create(applicant_params)
     @applicant.user = current_user
@@ -37,7 +36,7 @@ class ApplicantsController < ApplicationController
       redirect_to root_path
     end
   end
-
+  
   def edit
     @applicant = Applicant.find(params[:id])
   end
@@ -55,10 +54,10 @@ class ApplicantsController < ApplicationController
 
   def applicant_params
     params.require(:applicant).permit(:full_name, :social_name, :birthdate,
-                                      :academic, :description, :experience,
-                                      :photo, :user_id)
+                                       :academic, :description, :experience,
+                                       :photo, :user_id)
   end
-
+  
   def profile_owner
     @applicant = Applicant.find(params[:id])
     if @applicant.user != current_user
@@ -68,6 +67,8 @@ class ApplicantsController < ApplicationController
   end
 
   def authenticate_visitor
-    redirect_to root_path unless user_signed_in? || head_signed_in?
-  end
+    if !(user_signed_in? || head_signed_in?)
+      redirect_to root_path
+    end
+  end    
 end

@@ -1,12 +1,10 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
 feature 'User auth' do
   context 'log in' do
     scenario 'sucessfully' do
       user = create(:user)
-      create(:applicant, user: user)
+      applicant = create(:applicant, user: user)
 
       visit root_path
       click_on 'Candidato'

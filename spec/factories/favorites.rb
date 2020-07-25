@@ -1,8 +1,6 @@
-# frozen_string_literal: true
-
 FactoryBot.define do
   factory :favorite do
-    applicant
-    head
+    applicant 
+    head 
   end
 end
