@@ -1,0 +1,52 @@
+inherit_from: .rubocop_todo.yml
+
+
+Metrics/MethodLength:
+  Exclude:
+    - 'bin/bundle'
+
+Layout/LineLength:
+  Exclude:
+    - 'bin/bundle'
+    - 'config'
+    - 'db'
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - 'app/controllers/heads/passwords_controller.rb'
+    - 'app/controllers/heads/registrations_controller.rb'
+    - 'app/controllers/heads/sessions_controller.rb'
+    - 'app/controllers/users/passwords_controller.rb'
+    - 'app/controllers/users/registrations_controller.rb'
+    - 'app/controllers/users/sessions_controller.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'db/schema'
+
+Style/Documentation:
+  Exclude:
+    - 'app/helpers'
+    - 'app/mailers'
+    - 'db/migrate'
+
+Style/IfUnlessModifier:
+  Exclude:
+    - 'bin/bundle'
+
+Metrics/CyclomaticComplexity:
+  Exclude:
+    - 'bin/bundle'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'bin/bundle'
+
+Metrics/PerceivedComplexity:
+  Exclude:
+    - 'bin/bundle'
+
+Metrics/AbcSize:
+  Exclude:
+    - 'bin/bundle'
+    - 'db'
