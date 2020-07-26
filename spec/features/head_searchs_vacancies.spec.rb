@@ -5,7 +5,7 @@ require 'rails_helper'
 feature 'Head searchs for job vacancy' do
   scenario 'sucessfully' do
     head = create(:head)
-    create(:job_vacancy)
+    job_vacancy = create(:job_vacancy)
     login_as head, scope: :head
     visit root_path
     click_on 'Ver vagas de emprego'

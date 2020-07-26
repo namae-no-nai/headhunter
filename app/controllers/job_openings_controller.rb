@@ -15,9 +15,10 @@ class JobOpeningsController < ApplicationController
     @job_openings = JobOpening.where(job_vacancy: @job_vacancy)
     return unless user_signed_in?
 
-    @job_vacancy = JobVacancy.find(params[:job_vacancy_id])
-    @job_opening = JobOpening.find_by(job_vacancy: @job_vacancy,
-                                      applicant: @applicant)
+      @job_vacancy = JobVacancy.find(params[:job_vacancy_id])
+      @job_opening = JobOpening.find_by(job_vacancy: @job_vacancy,
+                                        applicant: @applicant)
+    end
   end
 
   def new
