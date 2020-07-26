@@ -5,7 +5,7 @@ require 'rails_helper'
 feature 'Head posts a comment' do
   scenario 'sucessfully' do
     head = create(:head)
-    applicant = create(:applicant)
+    create(:applicant)
 
     login_as head, scope: :head
 

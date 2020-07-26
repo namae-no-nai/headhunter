@@ -6,9 +6,9 @@ feature 'Applicant applies for a job' do
   context 'selects a job' do
     scenario 'sucessfully' do
       user = create(:user)
-      applicant = create(:applicant, user: user)
-      job_vacancy = create(:job_vacancy)
-      job_opening = create(:job_opening)
+      create(:applicant, user: user)
+      create(:job_vacancy)
+      create(:job_opening)
 
       login_as user, scope: :user
 

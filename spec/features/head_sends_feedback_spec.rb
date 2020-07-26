@@ -8,7 +8,7 @@ feature 'head sends feedback' do
     job_vacancy = create(:job_vacancy, head: head)
     applicant = create(:applicant)
     create(:job_opening, job_vacancy: job_vacancy,
-                                       applicant: applicant)
+                         applicant: applicant)
 
     login_as head, scope: :head
 
