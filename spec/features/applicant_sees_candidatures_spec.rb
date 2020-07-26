@@ -8,7 +8,7 @@ feature 'Applicant sees candidatures' do
     applicant = create(:applicant, user: user)
     job_vacancy = create(:job_vacancy)
     create(:job_opening, job_vacancy: job_vacancy,
-                         applicant: applicant)
+                                       applicant: applicant)
 
     login_as user, scope: :user
 
@@ -37,7 +37,7 @@ feature 'Applicant sees candidatures' do
     applicant = create(:applicant, user: user)
     job_vacancy = create(:job_vacancy)
     create(:job_opening, job_vacancy: job_vacancy,
-                         applicant: applicant)
+                                       applicant: applicant)
 
     login_as user, scope: :user
 

@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# Applicant related controller
 class ApplicantsController < ApplicationController
   before_action :authenticate_user!, only: %i[new create edit update]
   before_action :authenticate_head!, only: %i[index]
@@ -13,17 +12,17 @@ class ApplicantsController < ApplicationController
 
   def show
     if user_signed_in?
-      if @applicant == Applicant.find_by(user: current_user)
+      if @applicant = Applicant.find_by(user: current_user)
         @posts = Post.where(applicant: @applicant)
       else
         redirect_to new_applicant_path
       end
     end
-    return unless head_signed_in?
-
-    @applicant = Applicant.find_by(params[:id])
-    @posts = Post.where(head: current_head, applicant: @applicant)
-    @favorite = Favorite.where(head_id: current_head, applicant_id: @applicant)
+    if head_signed_in?
+      @applicant = Applicant.find_by(params[:id])
+      @posts = Post.where(head: current_head, applicant: @applicant)
+      @favorite = Favorite.where(head_id: current_head, applicant_id: @applicant)
+    end
   end
 
   def new
@@ -33,10 +32,10 @@ class ApplicantsController < ApplicationController
   def create
     @applicant = Applicant.create(applicant_params)
     @applicant.user = current_user
-    return unless @applicant.save
-
-    flash[:notice] = 'Perfil criado com sucesso'
-    redirect_to root_path
+    if @applicant.save
+      flash[:notice] = 'Perfil criado com sucesso'
+      redirect_to root_path
+    end
   end
 
   def edit
@@ -62,10 +61,10 @@ class ApplicantsController < ApplicationController
 
   def profile_owner
     @applicant = Applicant.find(params[:id])
-    return unless @applicant.user != current_user
-
-    redirect_to root_path
-    flash[:alert] = 'Ação não permitida'
+    if @applicant.user != current_user
+      redirect_to root_path
+      flash[:alert] = 'Ação não permitida'
+    end
   end
 
   def authenticate_visitor

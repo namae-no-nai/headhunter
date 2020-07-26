@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# Controller related to messages sent by the headhunter to the user
 class PostsController < ApplicationController
   before_action :find_applicant
   before_action :authenticate_head!

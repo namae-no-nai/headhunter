@@ -1,6 +1,5 @@
 # frozen_string_literal: true
 
-# Used for employer to send back messsages to applicant
 class FeedbacksController < ApplicationController
   before_action :find_current_job, only: %i[new create]
   before_action :authenticate_head!, only: %i[new create]
